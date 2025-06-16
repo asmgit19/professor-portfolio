@@ -19,10 +19,10 @@ const Home = () => {
     const fetchData = async () => {
       try {
         // Test backend connection first
-        const healthCheck = await axios.get('http://localhost:5000/api/health');
+        const healthCheck = await axios.get('/api/health');
         console.log('Backend health:', healthCheck.data);
 
-        const BASE_API_URL = 'http://localhost:5000/api/v1';
+        const BASE_API_URL = '/api/v1';
 
         const endpoints = [
           '/profile',
@@ -73,7 +73,7 @@ const Home = () => {
   const handleProfileUpdate = async (updatedProfile) => {
     try {
       const response = await axios.patch(
-        'http://localhost:5000/api/profile', 
+        '/api/profile', 
         updatedProfile
       );
       setProfile(response.data);

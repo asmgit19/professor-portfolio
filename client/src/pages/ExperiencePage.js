@@ -11,8 +11,8 @@ const ExperiencePage = () => {
 
   useEffect(() => {
     Promise.all([
-      axios.get('http://localhost:5000/api/v1/profile'),
-      axios.get('http://localhost:5000/api/v1/experience')
+      axios.get('/api/v1/profile'),
+      axios.get('/api/v1/experience')
     ])
       .then(([profileRes, expRes]) => {
         setProfile(profileRes.data);

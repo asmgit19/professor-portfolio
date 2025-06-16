@@ -10,7 +10,7 @@ const Admin = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.patch(`http://localhost:5000/api/${formData.section}`, formData.data);
+      await axios.patch(`/api/${formData.section}`, formData.data);
       alert('Updated successfully!');
     } catch (error) {
       console.error('Update error:', error);

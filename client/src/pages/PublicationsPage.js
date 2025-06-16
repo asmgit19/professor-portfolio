@@ -11,8 +11,8 @@ const PublicationsPage = () => {
 
   useEffect(() => {
     Promise.all([
-      axios.get('http://localhost:5000/api/v1/profile'),
-      axios.get('http://localhost:5000/api/v1/publications')
+      axios.get('/api/v1/profile'),
+      axios.get('/api/v1/publications')
     ])
       .then(([profileRes, pubsRes]) => {
         setProfile(profileRes.data);

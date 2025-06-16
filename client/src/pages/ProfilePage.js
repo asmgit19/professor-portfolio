@@ -9,7 +9,7 @@ const ProfilePage = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/v1/profile')
+    axios.get('/api/v1/profile')
       .then(res => setProfile(res.data))
       .catch(err => setError('Failed to load profile'))
       .finally(() => setLoading(false));
