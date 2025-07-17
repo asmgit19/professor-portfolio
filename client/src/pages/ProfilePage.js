@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import Profile from '../components/Profile';
-import Layout from '../components/Layout';
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import Profile from "../components/Profile";
+import Layout from "../components/Layout";
+import axios from "axios";
 
 const ProfilePage = () => {
   const [profile, setProfile] = useState(null);
@@ -9,9 +9,10 @@ const ProfilePage = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    axios.get('/api/v1/profile')
-      .then(res => setProfile(res.data))
-      .catch(err => setError('Failed to load profile'))
+    axios
+      .get("http://localhost:5000/api/v1/profile")
+      .then((res) => setProfile(res.data))
+      .catch((err) => setError("Failed to load profile"))
       .finally(() => setLoading(false));
   }, []);
 
@@ -25,4 +26,4 @@ const ProfilePage = () => {
   );
 };
 
-export default ProfilePage; 
+export default ProfilePage;

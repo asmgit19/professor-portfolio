@@ -1,26 +1,32 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-import Layout from '../components/Layout';
+import React, { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import Layout from "../components/Layout";
 
 const RegisterPage = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [message, setMessage] = useState('');
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [message, setMessage] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('/api/auth/register', {
-        username,
-        password
-      });
-      setMessage(response.data.message || 'Registration successful!');
-      navigate('/login'); // Redirect to login page after successful registration
+      const response = await axios.post(
+        "http://localhost:5000/api/auth/register",
+        {
+          username,
+          password,
+        }
+      );
+      setMessage(response.data.message || "Registration successful!");
+      navigate("/login"); // Redirect to login page after successful registration
     } catch (error) {
-      console.error('Registration error:', error);
-      setMessage(error.response?.data?.message || 'Registration failed. Please try again.');
+      console.error("Registration error:", error);
+      setMessage(
+        error.response?.data?.message ||
+          "Registration failed. Please try again."
+      );
     }
   };
 
@@ -49,7 +55,9 @@ const RegisterPage = () => {
               required
             />
           </div>
-          <button type="submit" className="btn">Register</button>
+          <button type="submit" className="btn">
+            Register
+          </button>
         </form>
         {message && <p className="message">{message}</p>}
         <p className="login-link">
@@ -60,4 +68,4 @@ const RegisterPage = () => {
   );
 };
 
-export default RegisterPage; 
+export default RegisterPage;

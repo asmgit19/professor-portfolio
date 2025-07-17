@@ -1,6 +1,11 @@
 {
-  "dependencies": {
-    "bcryptjs": "^3.0.2",
-    "jsonwebtoken": "^9.0.2"
+  "name": "portfolio-admin-panel",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "concurrently --kill-others-on-fail --kill-others \"npm run start --prefix client\" \"npm run start --prefix server\""
+  },
+  "devDependencies": {
+    "concurrently": "^8.0.0"
   }
 }

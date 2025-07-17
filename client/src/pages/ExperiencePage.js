@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import Experience from '../components/Experience';
-import Layout from '../components/Layout';
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import Experience from "../components/Experience";
+import Layout from "../components/Layout";
+import axios from "axios";
 
 const ExperiencePage = () => {
   const [experience, setExperience] = useState([]);
@@ -11,14 +11,14 @@ const ExperiencePage = () => {
 
   useEffect(() => {
     Promise.all([
-      axios.get('/api/v1/profile'),
-      axios.get('/api/v1/experience')
+      axios.get("http://localhost:5000/api/v1/profile"),
+      axios.get("http://localhost:5000/api/v1/experience"),
     ])
       .then(([profileRes, expRes]) => {
         setProfile(profileRes.data);
         setExperience(expRes.data);
       })
-      .catch(err => setError('Failed to load experience'))
+      .catch((err) => setError("Failed to load experience"))
       .finally(() => setLoading(false));
   }, []);
 
@@ -32,4 +32,4 @@ const ExperiencePage = () => {
   );
 };
 
-export default ExperiencePage; 
+export default ExperiencePage;

@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import Education from '../components/Education';
-import Layout from '../components/Layout';
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import Education from "../components/Education";
+import Layout from "../components/Layout";
+import axios from "axios";
 
 const EducationPage = () => {
   const [education, setEducation] = useState([]);
@@ -11,14 +11,14 @@ const EducationPage = () => {
 
   useEffect(() => {
     Promise.all([
-      axios.get('/api/v1/profile'),
-      axios.get('/api/v1/education')
+      axios.get("http://localhost:5000/api/v1/profile"),
+      axios.get("http://localhost:5000/api/v1/education"),
     ])
       .then(([profileRes, eduRes]) => {
         setProfile(profileRes.data);
         setEducation(eduRes.data);
       })
-      .catch(err => setError('Failed to load education'))
+      .catch((err) => setError("Failed to load education"))
       .finally(() => setLoading(false));
   }, []);
 
@@ -32,4 +32,4 @@ const EducationPage = () => {
   );
 };
 
-export default EducationPage; 
+export default EducationPage;

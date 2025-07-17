@@ -1,28 +1,34 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-import Layout from '../components/Layout';
+import React, { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import Layout from "../components/Layout";
 
 const LoginPage = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [message, setMessage] = useState('');
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [message, setMessage] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('/api/auth/login', {
-        username,
-        password
-      });
-      localStorage.setItem('token', response.data.token);
-      setMessage('Login successful!');
+      const response = await axios.post(
+        "http://localhost:5000/api/auth/login",
+        {
+          username,
+          password,
+        }
+      );
+      localStorage.setItem("token", response.data.token);
+      setMessage("Login successful!");
       // Redirect to home page after successful login
-      navigate('/'); 
+      navigate("/");
     } catch (error) {
-      console.error('Login error:', error);
-      setMessage(error.response?.data?.message || 'Login failed. Please check credentials.');
+      console.error("Login error:", error);
+      setMessage(
+        error.response?.data?.message ||
+          "Login failed. Please check credentials."
+      );
     }
   };
 
@@ -51,7 +57,9 @@ const LoginPage = () => {
               required
             />
           </div>
-          <button type="submit" className="btn">Login</button>
+          <button type="submit" className="btn">
+            Login
+          </button>
         </form>
         {message && <p className="message">{message}</p>}
         <p className="register-link">
@@ -62,4 +70,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage; 
+export default LoginPage;

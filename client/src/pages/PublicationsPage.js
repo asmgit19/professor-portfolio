@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import Publications from '../components/Publications';
-import Layout from '../components/Layout';
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import Publications from "../components/Publications";
+import Layout from "../components/Layout";
+import axios from "axios";
 
 const PublicationsPage = () => {
   const [publications, setPublications] = useState([]);
@@ -11,14 +11,14 @@ const PublicationsPage = () => {
 
   useEffect(() => {
     Promise.all([
-      axios.get('/api/v1/profile'),
-      axios.get('/api/v1/publications')
+      axios.get("http://localhost:5000/api/v1/profile"),
+      axios.get("http://localhost:5000/api/v1/publications"),
     ])
       .then(([profileRes, pubsRes]) => {
         setProfile(profileRes.data);
         setPublications(pubsRes.data);
       })
-      .catch(err => setError('Failed to load publications'))
+      .catch((err) => setError("Failed to load publications"))
       .finally(() => setLoading(false));
   }, []);
 
@@ -32,4 +32,4 @@ const PublicationsPage = () => {
   );
 };
 
-export default PublicationsPage; 
+export default PublicationsPage;
